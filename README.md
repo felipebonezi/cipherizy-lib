@@ -11,7 +11,12 @@ To use it, the only thing you need to do is import it into your project using gr
 
 Insert this block into your pom.xml file
 ```xml
-colocar dependencia maven zqui
+<dependency>
+	<groupId>justa.com.vc</groupId>
+	<artifactId>jst-cipher-lib</artifactId>
+	<version>1.0.0-RC.0</version>
+	<type>pom</type>
+</dependency>
 ```
 
 
@@ -19,7 +24,7 @@ colocar dependencia maven zqui
 
 Insert this block into your build.gradle file
 ```gradle
-colocar dependencia gradle aqui
+implementation 'justa.com.vc:jst-cipher-lib:1.0.0-RC.0'
 ```
 
 
