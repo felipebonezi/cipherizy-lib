@@ -1,10 +1,15 @@
 # Gradle
 .gradle
 .gradle/*
+/.gradle/
+/gradle/
+gradlew
+gradlew.bat
 
 # IDEA
 .idea
 .idea/*
+/.idea/
 
 # Compiled class file
 *.class
