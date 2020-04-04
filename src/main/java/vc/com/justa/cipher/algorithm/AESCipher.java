@@ -61,7 +61,7 @@ class AESCipher implements ICipher {
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException
                 | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
-            throw new CipherException("We had some problems to encrypt your data!", e);
+            throw new CipherException("We had some problems to decrypt your data!", e);
         }
     }
 
