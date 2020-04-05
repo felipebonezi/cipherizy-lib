@@ -1,11 +1,11 @@
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import vc.com.justa.cipher.CipherException;
 import vc.com.justa.cipher.ICipher;
 import vc.com.justa.cipher.algorithm.CipherFactory;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 /**
  * Cipher class test.
@@ -59,6 +59,12 @@ public class CipherTest {
 
         byte[] decryptedData = cipherAES.decrypt(KEY, SALT, encryptedData);
         Assert.assertArrayEquals(data, decryptedData);
+
+        String creditCardNumber = new String(decryptedData);
+        Assert.assertEquals(CREDIT_CARD_NUMBER_16, creditCardNumber);
+
+        String creditCardNumberStr = cipherAES.decryptToString(KEY, SALT, encryptedData);
+        Assert.assertEquals(CREDIT_CARD_NUMBER_16, creditCardNumberStr);
     }
 
     /**
@@ -77,6 +83,12 @@ public class CipherTest {
 
         byte[] decryptedData = cipherAES.decrypt(KEY, SALT, encryptedData);
         Assert.assertArrayEquals(data, decryptedData);
+
+        String creditCardNumber = new String(decryptedData);
+        Assert.assertEquals(CREDIT_CARD_NUMBER_22, creditCardNumber);
+
+        String creditCardNumberStr = cipherAES.decryptToString(KEY, SALT, encryptedData);
+        Assert.assertEquals(CREDIT_CARD_NUMBER_22, creditCardNumberStr);
     }
 
 }
