@@ -10,7 +10,7 @@ This lib was developed with the main goal of make sensitive data encryption/decr
 
 ```xml
 <dependency>
- <groupId>br.com.felipebonezi</groupId>
+ <groupId>io.github.felipebonezi</groupId>
  <artifactId>cipherizy-lib</artifactId>
  <version>1.0.0</version>
  <type>pom</type>
@@ -20,13 +20,13 @@ This lib was developed with the main goal of make sensitive data encryption/decr
 ### Gradle
 
 ```gradle
-implementation 'br.com.felipebonezi:cipherizy-lib:1.0.0'
+implementation 'io.github.felipebonezi:cipherizy-lib:1.0.0'
 ```
 
 ### Sbt
 
 ```sbt
-  libraryDependencies ++= "br.com.felipebonezi" % "cipherizy-lib" % "1.0.0"
+  libraryDependencies ++= "io.github.felipebonezi" % "cipherizy-lib" % "1.0.0"
 ```
 
 ## First Cipher

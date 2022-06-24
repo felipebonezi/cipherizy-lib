@@ -1,7 +1,7 @@
-package br.com.felipebonezi.cipher.algorithm;
+package io.github.felipebonezi.cipher.algorithm;
 
-import br.com.felipebonezi.cipher.CipherException;
-import br.com.felipebonezi.cipher.ICipher;
+import io.github.felipebonezi.cipher.CipherException;
+import io.github.felipebonezi.cipher.ICipher;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

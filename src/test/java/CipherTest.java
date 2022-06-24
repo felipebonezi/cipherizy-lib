@@ -1,8 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
-import br.com.felipebonezi.cipher.CipherException;
-import br.com.felipebonezi.cipher.ICipher;
-import br.com.felipebonezi.cipher.algorithm.CipherFactory;
+import io.github.felipebonezi.cipher.CipherException;
+import io.github.felipebonezi.cipher.ICipher;
+import io.github.felipebonezi.cipher.algorithm.CipherFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;

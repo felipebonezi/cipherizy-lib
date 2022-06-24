@@ -1,18 +1,89 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
 }
 
-group 'br.com.felipebonezi'
-version 'v1.0.0'
+group 'io.github.felipebonezi'
+version '1.0.0'
 
 sourceCompatibility = 1.8
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
 
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
-allprojects {
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'cipherizy-lib'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'Cipherizy'
+                description = 'This lib was developed with the main goal of make sensitive data encryption/decryption easy. Cipher lib for Java, Kotlin or Scala projects.'
+                url = 'https://github.com/felipebonezi/cipherizy-lib'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://spdx.org/licenses/MIT.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'felipebonezi'
+                        name = 'Felipe Bonezi'
+                        email = 'felipebonezi@gmail.com'
+                        url = 'https://github.com/sponsor/felipebonezi'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/felipebonezi/cipherizy-lib.git'
+                    developerConnection = 'scm:git:ssh://github.com/felipebonezi/cipherizy-lib.git'
+                    url = 'http://github.com/felipebonezi/cipherizy-lib'
+                }
+            }
+        }
+    }
     repositories {
-        mavenCentral()
+        maven {
+            credentials {
+                username = "felipebonezi"
+                password = "euamominhaMAE1**"
+            }
+
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
     }
 }

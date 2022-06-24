@@ -1,6 +1,6 @@
-package br.com.felipebonezi.cipher.algorithm;
+package io.github.felipebonezi.cipher.algorithm;
 
-import br.com.felipebonezi.cipher.ICipher;
+import io.github.felipebonezi.cipher.ICipher;
 
 /**
  * Factory method pattern to generate {@link ICipher} implementations to encrypt or decrypt some data.
