@@ -1,0 +1,15 @@
+# Auto label all Pull Requests.
+# ~~
+# See more: https://github.com/TimonVS/pr-labeler-action
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  pr-labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: TimonVS/pr-labeler-action@v3
+        with:
+          configuration-path: .github/pr-auto-label.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
