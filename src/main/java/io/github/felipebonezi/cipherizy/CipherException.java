@@ -1,4 +1,4 @@
-package vc.com.justa.cipher;
+package io.github.felipebonezi.cipher;
 
 /**
  * All exceptions are grouped at the class.
