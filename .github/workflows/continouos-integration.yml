@@ -44,7 +44,7 @@ jobs:
           cache: 'gradle'
 
       - name: Perform Build / Test
-        run: gradle assemble
+        run: gradle check
 
   publish:
     name: Publish to Maven Central
