@@ -1,4 +1,4 @@
-package vc.com.justa.cipher;
+package br.com.felipebonezi.cipher;
 
 /**
  * Interface used on each algorithm to encrypt or decrypt data.

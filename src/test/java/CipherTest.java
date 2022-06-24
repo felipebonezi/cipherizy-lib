@@ -1,8 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
-import vc.com.justa.cipher.CipherException;
-import vc.com.justa.cipher.ICipher;
-import vc.com.justa.cipher.algorithm.CipherFactory;
+import br.com.felipebonezi.cipher.CipherException;
+import br.com.felipebonezi.cipher.ICipher;
+import br.com.felipebonezi.cipher.algorithm.CipherFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -26,13 +26,13 @@ public class CipherTest {
      * Master key used in encryption and decryption mode.
      * 16 bytes = 128 bits.
      */
-    private static final byte[] KEY = "0029959810000151".getBytes(StandardCharsets.UTF_8);
+    private static final byte[] KEY = "00_FELIPE_BONEZI".getBytes(StandardCharsets.UTF_8);
 
     /**
      * Vector salt used in encryption and decryption mode.
      * 16 bytes = 128 bits.
      */
-    private static final byte[] SALT = "JUSTA-PAGAMENTOS".getBytes(StandardCharsets.UTF_8);
+    private static final byte[] SALT = "FELIPEBONEZISALT".getBytes(StandardCharsets.UTF_8);
 
     /**
      * Test with the master key and vector salt has input length divisible by 8.
