@@ -1,4 +1,4 @@
-package io.github.felipebonezi.cipher;
+package io.github.felipebonezi.cipherizy;
 
 /**
  * Interface used on each algorithm to encrypt or decrypt data.

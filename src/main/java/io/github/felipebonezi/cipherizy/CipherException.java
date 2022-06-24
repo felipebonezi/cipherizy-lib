@@ -1,4 +1,4 @@
-package io.github.felipebonezi.cipher;
+package io.github.felipebonezi.cipherizy;
 
 /**
  * All exceptions are grouped at the class.
