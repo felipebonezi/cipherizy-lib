@@ -1,67 +1,89 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-}
-
 plugins {
-    id "com.jfrog.bintray" version "1.8.1"
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
 }
 
-group 'justa.com.vc'
-version 'v1.0.0-RC.0'
-
-allprojects {
-    repositories {
-        jcenter()
-    }
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-    apply plugin: 'java'
-}
+group 'io.github.felipebonezi'
+version '1.0.0'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
-// Create the publication with the pom configuration:
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 publishing {
     publications {
-        CipherPublication(MavenPublication) {
+        mavenJava(MavenPublication) {
+            artifactId = 'cipherizy-lib'
             from components.java
-            groupId group
-            artifactId 'jst-cipher-lib'
-            version version.toString().replace('v', '')
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'Cipherizy'
+                description = 'This lib was developed with the main goal of make sensitive data encryption/decryption easy. Cipher lib for Java, Kotlin or Scala projects.'
+                url = 'https://github.com/felipebonezi/cipherizy-lib'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://spdx.org/licenses/MIT.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'felipebonezi'
+                        name = 'Felipe Bonezi'
+                        email = 'felipebonezi@gmail.com'
+                        url = 'https://github.com/sponsor/felipebonezi'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/felipebonezi/cipherizy-lib.git'
+                    developerConnection = 'scm:git:ssh://github.com/felipebonezi/cipherizy-lib.git'
+                    url = 'http://github.com/felipebonezi/cipherizy-lib'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username = "felipebonezi"
+                password = "euamominhaMAE1**"
+            }
+
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
         }
     }
 }
 
-bintray {
-    user = property('bintray.user')
-    key = property('bintray.password')
-    publications = ['CipherPublication']
-    pkg {
-        repo = 'maven'
-        name = 'jst-cipher-lib'
-        userOrg = 'justa'
-        desc = 'Justa cipher library for Java or Kotlin projects.'
-        websiteUrl = 'https://github.com/justapagamentos/jst-cipher-lib'
-        vcsUrl = 'https://github.com/justapagamentos/jst-cipher-lib.git'
-        licenses = ['Apache-2.0']
-        labels = ['justa','cipher','java-cipher','kotlin-cipher']
-        publicDownloadNumbers = true
-        githubRepo = 'justapagamentos/jst-cipher-lib'
-        githubReleaseNotesFile = 'README.md'
-        version {
-            name = version
-            desc = bintray.pkg.desc
-            vcsTag = version.toString().replace('v', '')
-        }
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
     }
 }

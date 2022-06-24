@@ -1,12 +1,11 @@
-package vc.com.justa.cipher.algorithm;
+package io.github.felipebonezi.cipher.algorithm;
 
-import vc.com.justa.cipher.ICipher;
+import io.github.felipebonezi.cipher.ICipher;
 
 /**
  * Factory method pattern to generate {@link ICipher} implementations to encrypt or decrypt some data.
  *
  * @see <a href="https://en.wikipedia.org/wiki/Factory_method_pattern">Factory Pattern</a>
- * @see <a href="https://justapagamentos.atlassian.net/wiki/spaces/TEC/pages/199720961/Design+Patterns#Factory">If you are partner of Justa.</a>
  */
 public class CipherFactory {
 

@@ -1,4 +1,4 @@
-package vc.com.justa.cipher;
+package io.github.felipebonezi.cipher;
 
 /**
  * Interface used on each algorithm to encrypt or decrypt data.
