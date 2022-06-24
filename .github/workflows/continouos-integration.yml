@@ -1,0 +1,65 @@
+name: "CI"
+on:
+  release:
+    types: [ published ]
+  push:
+    branches: [ main ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main, '**' ]
+  schedule:
+    - cron: '45 3 * * 1'
+jobs:
+  build:
+    name: Build & Analyze
+    if: "(github.event.release || github.event.release.prerelease) == false"
+    continue-on-error: ${{ matrix.experimental }}
+    needs: [ lint, checkstyle ]
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        distribution: [ 'corretto' ]
+        jdk: [ '8', '11' ]
+        experimental: [false]
+        include:
+          - jdk: '17'
+            distribution: 'corretto'
+            experimental: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: ${{ matrix.distribution }}
+          java-version: ${{ matrix.jdk }}
+          cache: 'gradle'
+
+      - name: Perform Build / Test
+        run: gradle assemble
+
+  publish:
+    name: Publish to Maven Central
+    if: "github.event.release || github.event.release.prerelease"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: '8'
+          cache: 'gradle'
+
+      - name: Setup credentials
+        run: |
+          echo $GPG_KEY_FILE | base64 --decode > gpg_secret_key_ring
+          echo $GRADLE_PROPERTIES_FILE | base64 --decode > gradle.properties
+
+      - name: Publish package
+        run: gradle publish
