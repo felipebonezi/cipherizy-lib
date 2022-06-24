@@ -1,7 +1,7 @@
-package vc.com.justa.cipher.algorithm;
+package br.com.felipebonezi.cipher.algorithm;
 
-import vc.com.justa.cipher.CipherException;
-import vc.com.justa.cipher.ICipher;
+import br.com.felipebonezi.cipher.CipherException;
+import br.com.felipebonezi.cipher.ICipher;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

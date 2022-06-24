@@ -1,67 +1,18 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-}
-
 plugins {
-    id "com.jfrog.bintray" version "1.8.1"
+    id 'java'
 }
 
-group 'justa.com.vc'
-version 'v1.0.0-RC.0'
-
-allprojects {
-    repositories {
-        jcenter()
-    }
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-    apply plugin: 'java'
-}
+group 'br.com.felipebonezi'
+version 'v1.0.0'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
 
-// Create the publication with the pom configuration:
-publishing {
-    publications {
-        CipherPublication(MavenPublication) {
-            from components.java
-            groupId group
-            artifactId 'jst-cipher-lib'
-            version version.toString().replace('v', '')
-        }
-    }
-}
-
-bintray {
-    user = property('bintray.user')
-    key = property('bintray.password')
-    publications = ['CipherPublication']
-    pkg {
-        repo = 'maven'
-        name = 'jst-cipher-lib'
-        userOrg = 'justa'
-        desc = 'Justa cipher library for Java or Kotlin projects.'
-        websiteUrl = 'https://github.com/justapagamentos/jst-cipher-lib'
-        vcsUrl = 'https://github.com/justapagamentos/jst-cipher-lib.git'
-        licenses = ['Apache-2.0']
-        labels = ['justa','cipher','java-cipher','kotlin-cipher']
-        publicDownloadNumbers = true
-        githubRepo = 'justapagamentos/jst-cipher-lib'
-        githubReleaseNotesFile = 'README.md'
-        version {
-            name = version
-            desc = bintray.pkg.desc
-            vcsTag = version.toString().replace('v', '')
-        }
+allprojects {
+    repositories {
+        mavenCentral()
     }
 }
