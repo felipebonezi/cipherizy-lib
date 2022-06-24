@@ -1,5 +1,11 @@
 # cipherizy-lib
 
+[![CI](https://github.com/felipebonezi/cipherizy-lib/actions/workflows/continouos-integration.yml/badge.svg)](https://github.com/felipebonezi/cipherizy-lib/actions/workflows/continouos-integration.yml)
+[![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
+[![Version](https://img.shields.io/github/v/release/felipebonezi/cipherizy-lib?logo=java)](https://github.com/felipebonezi/cipherizy-lib/releases)
+[![CLA assistant](https://cla-assistant.io/readme/badge/felipebonezi/cipherizy-lib)](https://cla-assistant.io/felipebonezi/cipherizy-lib)
+[![Licence](https://img.shields.io/github/license/felipebonezi/cipherizy-lib?color=blue)](https://github.com/felipebonezi/cipherizy-lib/blob/main/LICENSE)
+
 Cipher lib for Java, Kotlin or Scala projects.
 
 This lib was developed with the main goal of make sensitive data encryption/decryption easy. To use, you need only to import it into your project using maven, gradle or sbt.
