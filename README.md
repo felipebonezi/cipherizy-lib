@@ -12,13 +12,15 @@ This lib was developed with the main goal of make sensitive data encryption/decr
 
 ## Getting Started
 
+Import into your project.
+
 ### Maven
 
 ```xml
 <dependency>
  <groupId>io.github.felipebonezi</groupId>
  <artifactId>cipherizy-lib</artifactId>
- <version>1.0.0</version>
+ <version>X.Y.Z</version>
  <type>pom</type>
 </dependency>
 ```
@@ -26,13 +28,13 @@ This lib was developed with the main goal of make sensitive data encryption/decr
 ### Gradle
 
 ```gradle
-implementation 'io.github.felipebonezi:cipherizy-lib:1.0.0'
+implementation 'io.github.felipebonezi:cipherizy-lib:X.Y.Z'
 ```
 
 ### Sbt
 
 ```sbt
-  libraryDependencies ++= "io.github.felipebonezi" % "cipherizy-lib" % "1.0.0"
+  libraryDependencies ++= "io.github.felipebonezi" % "cipherizy-lib" % "X.Y.Z"
 ```
 
 ## First Cipher
