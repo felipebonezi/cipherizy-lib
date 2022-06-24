@@ -25,5 +25,5 @@ application {
 }
 
 dependencies {
-    implementation 'io.github.felipebonezi:chiperizy-lib:1.0.0'
+    implementation 'io.github.felipebonezi:cipherizy-lib:1.0.0'
 }
