@@ -36,4 +36,4 @@ gradlew.bat
 hs_err_pid*
 
 # Build folder.
-/build/
+build/
