@@ -1,7 +1,6 @@
 # jst-cipher-lib
-[Justa Pagamentos](https://www.justa.com.vc) cipher lib for Java or Kotlin projects.
 
-The so called "the one with criptography", this lib was developed with the main goal of make sensitive data encryption easy for the developers of  Justa Pagamentos. 
+Cipher lib for Java or Kotlin projects. The so called "the one with criptography", this lib was developed with the main goal of make sensitive data encryption easy. 
 
 To use it, the only thing you need to do is import it into your project using gradle or maven.
 
@@ -12,7 +11,7 @@ To use it, the only thing you need to do is import it into your project using gr
 Insert this block into your pom.xml file
 ```xml
 <dependency>
-	<groupId>justa.com.vc</groupId>
+	<groupId>br.com.felipebonezi</groupId>
 	<artifactId>jst-cipher-lib</artifactId>
 	<version>1.0.0-RC.0</version>
 	<type>pom</type>
@@ -24,7 +23,7 @@ Insert this block into your pom.xml file
 
 Insert this block into your build.gradle file
 ```gradle
-implementation 'justa.com.vc:jst-cipher-lib:1.0.0-RC.0'
+implementation 'br.com.felipebonezi:jst-cipher-lib:1.0.0-RC.0'
 ```
 
 
