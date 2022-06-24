@@ -9,6 +9,11 @@ on:
     branches: [ main, '**' ]
   schedule:
     - cron: '45 3 * * 1'
+
+env:
+  GPG_KEY_FILE: ${{ secrets.GPG_KEY_FILE }}
+  GRADLE_PROPERTIES_FILE: ${{ secrets.GRADLE_PROPERTIES_FILE }}
+
 jobs:
   build:
     name: Build & Analyze
@@ -57,8 +62,9 @@ jobs:
 
       - name: Setup credentials
         run: |
-          echo $GPG_KEY_FILE | base64 --decode > gpg_secret_key_ring
+          echo $GPG_KEY_FILE | base64 --decode > secring.gpg
           echo $GRADLE_PROPERTIES_FILE | base64 --decode > gradle.properties
+          echo 'Setup credentials successfuly!'
 
       - name: Publish package
         run: gradle publish
