@@ -6,10 +6,20 @@
 gradlew
 gradlew.bat
 
+# Fleet
+.fleet
+.fleet/*
+/.fleet/
+
 # IDEA
 .idea
 .idea/*
 /.idea/
+
+# VSCode
+.vscode
+.vscode/*
+/.vscode/
 
 # Compiled class file
 *.class
