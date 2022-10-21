@@ -1,5 +1,27 @@
 {
   "extends": [
     "config:base"
+  ],
+  "schedule": [
+    "every weekend"
+  ],
+  "dependencyDashboard": true,
+  "stabilityDays": 14,
+  "prCreation": "not-pending",
+  "additionalBranchPrefix": "deps/",
+  "addLabels": [
+    "type:dependency",
+    "build:android"
+  ],
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automergeStrategy": "rebase"
+    }
   ]
 }
