@@ -120,5 +120,17 @@ public class CipherTest {
     } catch (CipherException ignored) {
     }
   }
+
+  @Test
+  public void whenAESEncryptStringWithKey_thenDecryptSuccefully() throws CipherException {
+    CipherFactory factory = CipherFactory.getInstance();
+    ICipher cipherAES = factory.get(CipherFactory.Algorithm.AES);
+
+    byte[] encryptedData = cipherAES.encryptFromString(KEY, SALT, CREDIT_CARD_NUMBER_16);
+    Assert.assertEquals(0, encryptedData.length % 16);
+
+    String decryptedData = cipherAES.decryptToString(KEY, SALT, encryptedData);
+    Assert.assertEquals("Original data must be equals to decrypted data", CREDIT_CARD_NUMBER_16, decryptedData);
+  }
   
 }
