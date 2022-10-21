@@ -3,13 +3,16 @@ package io.github.felipebonezi.cipherizy.algorithm;
 import io.github.felipebonezi.cipherizy.CipherException;
 import io.github.felipebonezi.cipherizy.ICipher;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -50,6 +53,15 @@ class AESCipher implements ICipher {
     }
 
     @Override
+    public byte[] encrypt(byte[] key, byte[] salt, File data) throws CipherException {
+        try {
+            return encrypt(key, salt, Files.readAllBytes(data.toPath()));
+        } catch (IOException e) {
+            throw new CipherException("We had some problems to encrypt your data.", e);
+        }
+    }
+
+    @Override
     public byte[] encryptFromString(byte[] key, byte[] salt, String data) throws CipherException {
         return this.encrypt(key, salt, data.getBytes(StandardCharsets.UTF_8));
     }
@@ -61,6 +73,19 @@ class AESCipher implements ICipher {
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException
                 | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+            throw new CipherException("We had some problems to decrypt your data.", e);
+        }
+    }
+
+    @Override
+    public File decryptToFile(byte[] key, byte[] salt, byte[] data) throws CipherException {
+        byte[] decryptedBytes = decrypt(key, salt, data);
+        try {
+            File decryptedFile = File.createTempFile("cipherizy-decrypt", ".tmp");
+            Files.write(decryptedFile.toPath(), decryptedBytes);
+            decryptedFile.deleteOnExit();
+            return decryptedFile;
+        } catch (IOException e) {
             throw new CipherException("We had some problems to decrypt your data.", e);
         }
     }
