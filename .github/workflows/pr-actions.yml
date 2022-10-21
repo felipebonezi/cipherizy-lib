@@ -1,0 +1,26 @@
+# Pull Request Actions.
+# ~~~~
+name: PR Actions
+on:
+  pull_request:
+    types: [ opened, reopened, ready_for_review ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.PAT }}
+
+jobs:
+  pr-labeler:
+    name: Add Labels
+    runs-on: ubuntu-latest
+    steps:
+      - uses: TimonVS/pr-labeler-action@v3
+        with:
+          configuration-path: .github/pr-auto-label.yml
+
+  add-reviews:
+    name: Assign Author & Reviewers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kentaro-m/auto-assign-action@v1.2.4
+        with:
+          configuration-path: '.github/pr-auto-assign.yml'
