@@ -11,7 +11,7 @@
   "additionalBranchPrefix": "deps/",
   "addLabels": [
     "type:dependency",
-    "build:android"
+    "merge-when-ready"
   ],
   "packageRules": [
     {
