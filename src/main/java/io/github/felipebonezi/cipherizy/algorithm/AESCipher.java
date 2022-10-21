@@ -9,6 +9,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -44,14 +45,13 @@ class AESCipher implements ICipher {
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException
                 | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
-            throw new CipherException("We had some problems to encrypt your data!", e);
+            throw new CipherException("We had some problems to encrypt your data.", e);
         }
     }
 
     @Override
-    public String encryptToString(byte[] key, byte[] salt, byte[] data) throws CipherException {
-        byte[] encrypted = this.encrypt(key, salt, data);
-        return new String(encrypted);
+    public byte[] encryptFromString(byte[] key, byte[] salt, String data) throws CipherException {
+        return this.encrypt(key, salt, data.getBytes(StandardCharsets.UTF_8));
     }
 
     @Override
@@ -61,14 +61,13 @@ class AESCipher implements ICipher {
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException
                 | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
-            throw new CipherException("We had some problems to decrypt your data!", e);
+            throw new CipherException("We had some problems to decrypt your data.", e);
         }
     }
 
     @Override
     public String decryptToString(byte[] key, byte[] salt, byte[] data) throws CipherException {
-        byte[] decrypted = this.decrypt(key, salt, data);
-        return new String(decrypted);
+        return new String(this.decrypt(key, salt, data));
     }
 
     /**

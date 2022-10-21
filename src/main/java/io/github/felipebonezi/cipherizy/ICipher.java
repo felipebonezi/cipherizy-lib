@@ -26,7 +26,7 @@ public interface ICipher {
      * @return Encrypted data as text.
      * @throws CipherException Called when any encrypt exception was throw.
      */
-    String encryptToString(byte[] key, byte[] salt, byte[] data) throws CipherException;
+    byte[] encryptFromString(byte[] key, byte[] salt, String data) throws CipherException;
 
     /**
      * Decrypt your byte array using a master key and a vector salt.
