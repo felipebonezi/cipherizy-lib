@@ -1,9 +1,11 @@
-
 # Labels.
 "type:feature": ['feature/*', 'feat/*']
-"type:bug": ['bug/*', 'bugfix/*', 'fix/*', 'error/*']
+"type:bug": ['bug/*', 'bugfix/*', 'fix/*']
 "type:hotfix": ['hotfix/*', 'hot/*', 'urgent/*']
 "type:docs": ['docs/*', 'doc/*']
 "type:enhancement": ['enhancement/*', 'enhance/*', 'chore/*', 'improve/*', 'improvement/*']
 "type:maintenance": ['maintenance/*', 'robot/*', 'devops/*', 'update/*']
-"type:dependency": ['deps/*', 'renovate/*']
+"type:dependency": ['renovate/*', 'deps/*']
+"type:security": ['sec/*', 'security/*']
+"type:ignore": ['ignore/*']
+"type:tests": ['test/*', 'tests/*', 'coverage/*']
