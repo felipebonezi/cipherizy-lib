@@ -13,6 +13,8 @@ on:
 env:
   GPG_KEY_FILE: ${{ secrets.GPG_KEY_FILE }}
   GRADLE_PROPERTIES_FILE: ${{ secrets.GRADLE_PROPERTIES_FILE }}
+  SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+  SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
 
 jobs:
   build:
