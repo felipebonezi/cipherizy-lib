@@ -1,7 +1,7 @@
-Verifique se o PR cumpre os seguintes pontos
+Check that the PR complies with the following points:
 
-- [ ] Testes para as alterações foram adicionados.
-- [ ] Documentação foi adicionada ou alterada.
+- [ ] Tests for changes have been added.
+- [ ] Documentation has been added or changed.
 
 ## What's Changed
 
