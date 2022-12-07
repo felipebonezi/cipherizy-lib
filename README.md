@@ -53,8 +53,8 @@ ICipher cipher = factory.get(CipherFactory.Algorithm.AES);
 
 // To encrypt your data.
 try {
-  byte[] key  = getKey();  // Generate yout own randomic key.
-  byte[] salt = getSalt(); // Get yor encryption salt.
+  byte[] key  = getKey();  // Generate your own randomic key (must be 32 bytes long).
+  byte[] salt = getSalt(); // Get your encryption salt (must be 16 bytes long).
   byte[] data = getData(); // Get your data in byte[] format.
   
   byte[] encrypted = cipher.encrypt(key, salt, data);
@@ -73,8 +73,8 @@ ICipher cipher = factory.get(CipherFactory.Algorithm.AES);
 
 // To decrypt your data.
 try {
-  byte[] key  = getKey();  // Get your encryption key.
-  byte[] salt = getSalt(); // Get yor encryption salt.
+  byte[] key  = getKey();  // Get your encryption key (must be 32 bytes long).
+  byte[] salt = getSalt(); // Get yor encryption salt (must be 16 bytes long).
   byte[] data = getData(); // Get your encrypted data in byte[] format.
   
   byte[] decrypted = cipher.decrypt(key, salt, data);
