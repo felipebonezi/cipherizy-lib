@@ -1,6 +1,8 @@
 package io.github.felipebonezi.cipherizy.algorithm;
 
 import io.github.felipebonezi.cipherizy.ICipher;
+import java.security.Provider;
+import java.security.Security;
 
 /**
  * Factory method pattern to generate {@link ICipher} implementations to encrypt or decrypt some data.
@@ -48,6 +50,33 @@ public class CipherFactory {
             return new AESCipher();
         }
         throw new IllegalArgumentException("Algorithm not found: " + algorithm);
+    }
+    
+    /**
+     * Designed to use a provider-based architecture, the JCE allows for qualified cryptography
+     * libraries such as BouncyCastle to be plugged in as security providers and new algorithms
+     * to be added seamlessly.
+     * <p>
+     * We can add a security provider either statically or dynamically.
+     * To add a new Provider statically, we modify the `java.security` file located in
+     * <JAVA_HOME>/jre/lib/security folder.
+     * <p>
+     * We add the line at the end of the list:
+     * security.provider.4=com.sun.net.ssl.internal.ssl.Provider
+     * security.provider.5=com.sun.crypto.provider.SunJCE
+     * security.provider.6=sun.security.jgss.SunProvider
+     * security.provider.7=org.bouncycastle.jce.provider.BouncyCastleProvider
+     *
+     * @param provider       Required security provider.
+     * @param otherProviders Optional security providers.
+     */
+    public void addSecurityProviders(Provider provider, Provider... otherProviders) {
+        Security.addProvider(provider);
+        if (otherProviders != null && otherProviders.length > 0) {
+            for (Provider otherProvider : otherProviders) {
+                Security.addProvider(otherProvider);
+            }
+        }
     }
     
     /** Algorithms. */
