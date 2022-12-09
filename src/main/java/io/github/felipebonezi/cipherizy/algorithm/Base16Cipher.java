@@ -6,6 +6,7 @@ import io.github.felipebonezi.cipherizy.CipherException;
 import io.github.felipebonezi.cipherizy.ICipher;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 
 /**
@@ -71,7 +72,7 @@ class Base16Cipher implements ICipher {
   
   @Override
   public byte[] decrypt(byte[] key, byte[] salt, byte[] data) {
-    String encodedText = new String(data);
+    String encodedText = new String(data, Charset.defaultCharset());
     byte[] byteArray   = new byte[encodedText.length() / 2];
     for (int i = 0; i < byteArray.length; i++) {
       int digit1 = extractDigit(encodedText, i * 2);
@@ -96,7 +97,7 @@ class Base16Cipher implements ICipher {
   
   @Override
   public String decryptToString(byte[] key, byte[] salt, byte[] data) throws CipherException {
-    return new String(decrypt(key, salt, data));
+    return new String(decrypt(key, salt, data), Charset.defaultCharset());
   }
   
 }
