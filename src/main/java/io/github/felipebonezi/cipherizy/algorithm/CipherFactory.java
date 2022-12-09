@@ -20,6 +20,26 @@ public class CipherFactory {
      * @see <a href="https://en.wikipedia.org/wiki/Singleton_pattern">The Singleton Pattern</a>
      */
     private static CipherFactory INSTANCE;
+    
+    private CipherFactory() {
+    }
+
+    /**
+     * Get {@link ICipher} implement based on an {@link Algorithm}.
+     *
+     * @param algorithm Algorithm implementation.
+     *
+     * @return Cipher implementation.
+     */
+    public ICipher get(Algorithm algorithm) {
+        switch (algorithm) {
+            case AES:
+                return new AESCipher();
+            case BASE16:
+                return new Base16Cipher();
+        }
+        throw new IllegalArgumentException("Algorithm not implement.");
+    }
 
     /**
      * Get factory instance.
@@ -33,23 +53,6 @@ public class CipherFactory {
             }
             return INSTANCE;
         }
-    }
-    
-    private CipherFactory() {
-    }
-    
-    /**
-     * Get {@link ICipher} implement based on an {@link Algorithm}.
-     *
-     * @param algorithm Algorithm implementation.
-     *
-     * @return Cipher implementation.
-     */
-    public ICipher get(Algorithm algorithm) {
-        if (algorithm == Algorithm.AES) {
-            return new AESCipher();
-        }
-        throw new IllegalArgumentException("Algorithm not found: " + algorithm);
     }
     
     /**
@@ -81,7 +84,8 @@ public class CipherFactory {
     
     /** Algorithms. */
     public enum Algorithm {
-        AES
+        AES,
+        BASE16
     }
     
 }
