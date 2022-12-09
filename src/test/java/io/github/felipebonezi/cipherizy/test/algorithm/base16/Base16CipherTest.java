@@ -1,3 +1,5 @@
+package io.github.felipebonezi.cipherizy.test.algorithm.base16;
+
 import static io.github.felipebonezi.cipherizy.algorithm.CipherFactory.Algorithm.BASE16;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -10,7 +12,7 @@ import java.nio.file.Files;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CipherBase16Test {
+public class Base16CipherTest {
   
   // region Large text.
   private static final String LARGE_TEXT =
