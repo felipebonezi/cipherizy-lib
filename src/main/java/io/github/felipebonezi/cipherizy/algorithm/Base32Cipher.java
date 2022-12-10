@@ -126,23 +126,23 @@ public class Base32Cipher implements ICipher {
       if (index <= 3) {
         index = (index + 5) % 8;
         if (index == 0) {
-          byteArray[offset] |= digit;
+          byteArray[offset] = (byte) (byteArray[offset] | digit);
           offset++;
           if (offset >= byteArray.length) {
             break;
           }
         } else {
-          byteArray[offset] |= digit << (8 - index);
+          byteArray[offset] = (byte) (byteArray[offset] | digit << (8 - index));
         }
       } else {
         index = (index + 5) % 8;
-        byteArray[offset] |= (digit >>> index);
+        byteArray[offset] = (byte) (byteArray[offset] | (digit >>> index));
         offset++;
         
         if (offset >= byteArray.length) {
           break;
         }
-        byteArray[offset] |= digit << (8 - index);
+        byteArray[offset] = (byte) (byteArray[offset] | digit << (8 - index));
       }
     }
     return byteArray;
