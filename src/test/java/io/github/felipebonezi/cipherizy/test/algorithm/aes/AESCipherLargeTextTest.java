@@ -1,3 +1,5 @@
+package io.github.felipebonezi.cipherizy.test.algorithm.aes;
+
 import static org.junit.Assert.assertEquals;
 
 import io.github.felipebonezi.cipherizy.CipherException;
@@ -10,7 +12,7 @@ import org.junit.Test;
 /**
  * Cipher class test.
  */
-public class CipherLargeTextTest {
+public class AESCipherLargeTextTest {
   
   // region Large text.
   private static final String LARGE_TEXT =

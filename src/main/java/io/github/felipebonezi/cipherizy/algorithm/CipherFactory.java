@@ -9,9 +9,7 @@ import io.github.felipebonezi.cipherizy.ICipher;
  */
 public class CipherFactory {
 
-    /**
-     * Synchronized helper locker to avoid parallelism.
-     */
+    /** Synchronized helper locker to avoid parallelism. */
     private static final String LOCK = "CipherFactory::LOCK";
 
     /**
@@ -22,40 +20,39 @@ public class CipherFactory {
     private static CipherFactory INSTANCE;
 
     /**
-     * Algorithms.
-     */
-    public enum Algorithm {
-        AES
-    }
-
-    private CipherFactory() {
-    }
-
-    /**
      * Get factory instance.
      *
      * @return Factory instance.
      */
     public static CipherFactory getInstance() {
         synchronized (LOCK) {
-            if (INSTANCE == null)
+            if (INSTANCE == null) {
                 INSTANCE = new CipherFactory();
-
+            }
             return INSTANCE;
         }
     }
-
+    
+    private CipherFactory() {
+    }
+    
     /**
      * Get {@link ICipher} implement based on an {@link Algorithm}.
      *
      * @param algorithm Algorithm implementation.
+     *
      * @return Cipher implementation.
      */
     public ICipher get(Algorithm algorithm) {
         if (algorithm == Algorithm.AES) {
             return new AESCipher();
         }
-        return null;
+        throw new IllegalArgumentException("Algorithm not found: " + algorithm);
     }
-
+    
+    /** Algorithms. */
+    public enum Algorithm {
+        AES
+    }
+    
 }

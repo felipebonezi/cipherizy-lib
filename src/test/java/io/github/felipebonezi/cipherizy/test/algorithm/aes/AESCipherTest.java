@@ -1,3 +1,5 @@
+package io.github.felipebonezi.cipherizy.test.algorithm.aes;
+
 import io.github.felipebonezi.cipherizy.CipherException;
 import io.github.felipebonezi.cipherizy.ICipher;
 import io.github.felipebonezi.cipherizy.algorithm.CipherFactory;
@@ -11,7 +13,7 @@ import org.junit.Test;
 /**
  * Cipher class test.
  */
-public class CipherTest {
+public class AESCipherTest {
   
   /**
    * Credit card number with 16 chars.
@@ -123,32 +125,32 @@ public class CipherTest {
     } catch (CipherException ignored) {
     }
   }
-
+  
   @Test
   public void whenAESEncryptStringWithKey_thenDecryptSuccefully() throws CipherException {
-    CipherFactory factory = CipherFactory.getInstance();
-    ICipher cipherAES = factory.get(CipherFactory.Algorithm.AES);
-
+    CipherFactory factory   = CipherFactory.getInstance();
+    ICipher       cipherAES = factory.get(CipherFactory.Algorithm.AES);
+    
     byte[] encryptedData = cipherAES.encryptFromString(KEY, SALT, CREDIT_CARD_NUMBER_16);
     Assert.assertEquals(0, encryptedData.length % 16);
-
+    
     String decryptedData = cipherAES.decryptToString(KEY, SALT, encryptedData);
     Assert.assertEquals("Original data must be equals to decrypted data", CREDIT_CARD_NUMBER_16, decryptedData);
   }
-
+  
   @Test
   public void whenAESEncryptFileWithKey_thenDecryptSuccefully() throws CipherException, IOException {
-    CipherFactory factory = CipherFactory.getInstance();
-    ICipher cipherAES = factory.get(CipherFactory.Algorithm.AES);
-
+    CipherFactory factory   = CipherFactory.getInstance();
+    ICipher       cipherAES = factory.get(CipherFactory.Algorithm.AES);
+    
     File originalFile = File.createTempFile("cipherizy-decrypt-test", ".tmp");
     Files.write(originalFile.toPath(), CREDIT_CARD_NUMBER_22.getBytes(StandardCharsets.UTF_8));
     originalFile.deleteOnExit();
-
+    
     byte[] encryptedData = cipherAES.encrypt(KEY, SALT, originalFile);
     Assert.assertEquals(0, encryptedData.length % 16);
-
-    File decryptedFile          = cipherAES.decryptToFile(KEY, SALT, encryptedData);
+    
+    File   decryptedFile        = cipherAES.decryptToFile(KEY, SALT, encryptedData);
     String decryptedFileContent = new String(Files.readAllBytes(decryptedFile.toPath()), StandardCharsets.UTF_8);
     Assert.assertEquals("Original file content must be equals to decrypted file content", CREDIT_CARD_NUMBER_22, decryptedFileContent);
   }
