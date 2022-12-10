@@ -37,6 +37,8 @@ public class CipherFactory {
                 return new AESCipher();
             case BASE16:
                 return new Base16Cipher();
+            case BASE32:
+                return new Base32Cipher();
         }
         throw new IllegalArgumentException("Algorithm not implement.");
     }
@@ -79,15 +81,6 @@ public class CipherFactory {
             for (Provider otherProvider : otherProviders) {
                 Security.addProvider(otherProvider);
             }
-        }
-    }
-    
-    public ICipher get(Algorithm algorithm) {
-        switch (algorithm) {
-            case AES:
-                return new AESCipher();
-            case BASE32:
-                return new Base32Cipher();
         }
     }
     
