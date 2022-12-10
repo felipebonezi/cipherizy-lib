@@ -82,10 +82,20 @@ public class CipherFactory {
         }
     }
     
+    public ICipher get(Algorithm algorithm) {
+        switch (algorithm) {
+            case AES:
+                return new AESCipher();
+            case BASE32:
+                return new Base32Cipher();
+        }
+    }
+    
     /** Algorithms. */
     public enum Algorithm {
         AES,
-        BASE16
+        BASE16,
+        BASE32
     }
     
 }
