@@ -2,20 +2,20 @@ package io.github.felipebonezi.cipherizy.algorithm;
 
 import io.github.felipebonezi.cipherizy.CipherException;
 import io.github.felipebonezi.cipherizy.ICipher;
-
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Advanced Encryption Standard implementation.
@@ -92,7 +92,7 @@ class AESCipher implements ICipher {
 
     @Override
     public String decryptToString(byte[] key, byte[] salt, byte[] data) throws CipherException {
-        return new String(this.decrypt(key, salt, data));
+        return new String(this.decrypt(key, salt, data), Charset.defaultCharset());
     }
 
     /**
