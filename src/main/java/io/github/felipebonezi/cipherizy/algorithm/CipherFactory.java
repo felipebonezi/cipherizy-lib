@@ -39,6 +39,8 @@ public class CipherFactory {
                 return new Base16Cipher();
             case BASE32:
                 return new Base32Cipher();
+            case BASE64:
+                return new Base64Cipher();
         }
         throw new IllegalArgumentException("Algorithm not implement.");
     }
@@ -88,7 +90,8 @@ public class CipherFactory {
     public enum Algorithm {
         AES,
         BASE16,
-        BASE32
+        BASE32,
+        BASE64
     }
     
 }
