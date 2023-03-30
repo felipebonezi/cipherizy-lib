@@ -66,7 +66,7 @@ public class CipherFactory {
      * <p>
      * We can add a security provider either statically or dynamically.
      * To add a new Provider statically, we modify the `java.security` file located in
-     * <JAVA_HOME>/jre/lib/security folder.
+     * JAVA_HOME/jre/lib/security folder.
      * <p>
      * We add the line at the end of the list:
      * security.provider.4=com.sun.net.ssl.internal.ssl.Provider
